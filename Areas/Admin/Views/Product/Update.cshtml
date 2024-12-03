@@ -1,0 +1,123 @@
+﻿@model ProductUpdateVM
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a asp-action="Index" asp-controller="Product" class="btn btn-outline-primary ml-auto">Products List</a>
+
+    </div>
+    <div class="card-body">
+        <form enctype="multipart/form-data" method="post">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input class="form-control" asp-for="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+
+                <div>
+                    <img asp-append-version="true" width="100" src="~/Images/products/@Model.CoverFileUrl" />
+                    <input asp-for="CoverFileUrl" type="hidden" />
+                </div> 
+                <label asp-for="CoverImage"></label>
+                <input class="form-control" asp-for="CoverImage">
+                <span class="text-danger" asp-validation-for="CoverImage"></span>
+            </div>
+            <div class="form-group">
+                <div class="d-flex gap-1">
+                    <span>Sekile click etseniz silinecek!!</span>
+                    @foreach (var item in Model.OtherFileUrls ?? [])
+                    {
+                        <img asp-append-version="true"  class="product-images" item-id="@item.Id" width="100" src="~/Images/products/@item.Url" />
+                        <input asp-for="OtherFileUrls" type="hidden" />
+                    }
+                </div>
+
+                <label asp-for="OtherFiles"></label>
+                <input  class="form-control" asp-for="OtherFiles">
+                <span class="text-danger" asp-validation-for="OtherFiles"></span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group ">
+                    <label asp-for="CostPrice"></label>
+                    <input class="form-control" asp-for="CostPrice">
+                    <span class="text-danger" asp-validation-for="CostPrice"></span>
+                </div>
+                <div class="form-group ">
+                    <label asp-for="SellPrice"></label>
+                    <input class="form-control" asp-for="SellPrice">
+                    <span class="text-danger" asp-validation-for="SellPrice"></span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="Discount"></label>
+                    <input class="form-control" asp-for="Discount">
+                    <span class="text-danger" asp-validation-for="Discount"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label asp-for="Quantity"></label>
+                    <input class="form-control" asp-for="Quantity">
+                    <span class="text-danger" asp-validation-for="Quantity"></span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="CategoryId">Categories</label>
+                    <select asp-for="CategoryId" class="form-control">
+                        <option selected disabled>Select Category</option>
+                        @foreach (var item in ViewBag.Categories)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <span class="text-danger" asp-validation-for="CategoryId"></span>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+@section script {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        $(".product-images").click(function()
+        {
+             let img = $(this);
+           let id = $(this).attr("item-id");
+                    Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+                 }).then((result) => {
+                          if (result.isConfirmed) {
+                               fetch('/Admin/Product/DeleteImage/'+id)
+                                .then(res => {if(res)
+                                 {
+                                          Swal.fire({
+                                        title: "Deleted!",
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                      });
+                                      img.remove();}
+                                });
+                          }
+                 });
+
+
+        });
+    </script>
+}
+@section style {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css">
+}

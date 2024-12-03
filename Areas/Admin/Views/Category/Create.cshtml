@@ -1,0 +1,29 @@
+﻿@model CategoryCreateVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a asp-action="Index" asp-controller="Category" class="btn btn-outline-primary ml-auto">Categories List</a>
+    </div>
+    <div class="card-body">
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <form enctype="multipart/form-data" method="post">
+            <div class="form-group">
+                <label asp-for="CategoryName"></label>
+                <input class="form-control" asp-for="CategoryName">
+                <span class="text-danger" asp-validation-for="CategoryName"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

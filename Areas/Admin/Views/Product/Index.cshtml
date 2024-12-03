@@ -1,0 +1,73 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a asp-action="Create" asp-controller="Product" class="btn btn-outline-primary ml-auto">Create</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">CoverPhoto</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">CostPrice</th>
+                    <th scope="col">SellPrice</th>
+                    <th scope="col">CategoryId</th>
+                    <th colspan="2" scope="col">Action</th>
+                </tr>
+            </thead
+            @{
+                int counter = 1;
+            }
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@counter</td>
+                        <td><img src="~/Images/products/@item.CoverImage" width="50" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.Category?.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Discount</td>
+                        <td>@item.CostPrice</td>
+                        <td>@item.SellPrice</td>
+                        <td>@item.CategoryId</td>
+
+                        <td>
+                            <a class="btn btn btn-success" asp-action="Update" asp-controller="Product" asp-route-id="@item.Id">Update</a>
+                        </td>
+                        <td>
+                            <a class="btn btn btn-danger" asp-action="Delete" asp-controller="Product" asp-route-id="@item.Id">Delete</a>
+                        </td>
+
+                        @*  @if(!item.IsDeleted)
+                        {
+                            <td>
+                                <a class="btn btn btn-secondary" asp-action="Hide" asp-controller="Product" asp-route-id="@item.Id">Hide</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a class="btn btn btn-warning" asp-action="Show" asp-controller="Product" asp-route-id="@item.Id">Show</a>
+                            </td>
+
+                        }
+                        *@
+
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
