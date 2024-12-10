@@ -1,8 +1,8 @@
 ﻿@using FrontToBackMvc.ViewModels.Auths;
 @model LoginVM
 @{
-    Layout = null;
     ViewData["Title"] = "Login";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -25,7 +25,6 @@
 
     <!-- Custom styles for this template-->
     <link href="~/Admin/css/sb-admin-2.min.css" rel="stylesheet">
-    ~/Admin
 </head>
 
 <body class="bg-gradient-primary">
@@ -68,20 +67,16 @@
                                             </div>
                                             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                                         </div>
-                                        <button href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
                                     </form>
                                     <hr>
-                                    
-                                        <div class="text-center">
-                                            <a class="small" asp-action="Register">Create an Account!</a>
-                                        </div>
-                                    
+
+                                    <div class="text-center">
+                                        <a class="small" asp-action="Register">Create an Account!</a>
+                                    </div>
+
 
                                 </div>
                             </div>

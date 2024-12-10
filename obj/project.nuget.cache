@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uxsCVVNZkS8=",
+  "dgSpecHash": "EUCuXolq3cE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\uniqlo dfsadasdgf\\FrontToBack_Mvc\\FrontToBackMvc.csproj",
+  "projectFilePath": "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\CodeAcadamy\\MVC\\uniqlo mvc\\FrontToBack_Mvc\\FrontToBackMvc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bexti\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\bexti\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

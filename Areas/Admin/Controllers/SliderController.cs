@@ -7,11 +7,12 @@ using System.Reflection.Metadata.Ecma335;
 using System.Reflection;
 using FrontToBackMvc.Extentions;
 using Microsoft.AspNetCore.Authorization;
+using FrontToBackMvc.Helpers;
 
 namespace FrontToBackMvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = RoleConstants.Slider)]
     public class SliderController(UniqloDbContext _context, IWebHostEnvironment web) : Controller
     {
 

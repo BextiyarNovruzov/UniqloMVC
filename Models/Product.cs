@@ -1,4 +1,6 @@
-﻿namespace FrontToBackMvc.Models;
+﻿using NuGet.Common;
+
+namespace FrontToBackMvc.Models;
 
 public class Product:BaseEntity
 {
@@ -12,4 +14,8 @@ public class Product:BaseEntity
     public int CategoryId {  get; set; }
     public Category? Category { get; set; }
     public ICollection<ProductImage>? Images { get; set; }
+    public ICollection<Tag> Tags { get; set; }
+    public ICollection<ProductRating> Ragings { get; set; }
+    public ICollection<Comment>? Comments{ get; set; }
+
 }

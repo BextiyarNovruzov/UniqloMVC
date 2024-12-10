@@ -44,5 +44,10 @@ namespace FrontToBackMvc.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> AccessDenid()
+        {
+
+            return View();
+        }
     }
 }

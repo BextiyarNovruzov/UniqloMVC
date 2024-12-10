@@ -2270,12 +2270,10 @@ select.select-color {
 .product__big__images {
     max-width: 80%;
 }
-.pot-small-img a {
-    display: block;
+.pot-small-img a{
+    display:block
 }
-.pot-small-img a img {
-    width: 100%;
-}
+
 .pot-small-img {
     margin-top: 10px;
 }

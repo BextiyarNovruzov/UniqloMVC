@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\uniqlo dfsadasdgf\\FrontToBack_Mvc\\FrontToBackMvc.csproj": {}
+    "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\CodeAcadamy\\MVC\\uniqlo mvc\\FrontToBack_Mvc\\FrontToBackMvc.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\uniqlo dfsadasdgf\\FrontToBack_Mvc\\FrontToBackMvc.csproj": {
+    "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\CodeAcadamy\\MVC\\uniqlo mvc\\FrontToBack_Mvc\\FrontToBackMvc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\uniqlo dfsadasdgf\\FrontToBack_Mvc\\FrontToBackMvc.csproj",
+        "projectUniqueName": "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\CodeAcadamy\\MVC\\uniqlo mvc\\FrontToBack_Mvc\\FrontToBackMvc.csproj",
         "projectName": "FrontToBackMvc",
-        "projectPath": "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\uniqlo dfsadasdgf\\FrontToBack_Mvc\\FrontToBackMvc.csproj",
+        "projectPath": "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\CodeAcadamy\\MVC\\uniqlo mvc\\FrontToBack_Mvc\\FrontToBackMvc.csproj",
         "packagesPath": "C:\\Users\\bexti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\uniqlo dfsadasdgf\\FrontToBack_Mvc\\obj\\",
+        "outputPath": "C:\\Users\\bexti\\OneDrive\\Рабочий стол\\CodeAcadamy\\MVC\\uniqlo mvc\\FrontToBack_Mvc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

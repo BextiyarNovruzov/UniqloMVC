@@ -121,6 +121,32 @@ namespace FrontToBackMvc.Migrations
                     b.ToTable("ProductImages");
                 });
 
+            modelBuilder.Entity("FrontToBackMvc.Models.ProductRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductRatings");
+                });
+
             modelBuilder.Entity("FrontToBackMvc.Models.Slider", b =>
                 {
                     b.Property<int>("Id")
@@ -155,6 +181,29 @@ namespace FrontToBackMvc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
+                });
+
+            modelBuilder.Entity("FrontToBackMvc.Models.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("FrontToBackMvc.Models.User", b =>
@@ -363,6 +412,21 @@ namespace FrontToBackMvc.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ProductTag", b =>
+                {
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("ProductTag");
+                });
+
             modelBuilder.Entity("FrontToBackMvc.Models.Product", b =>
                 {
                     b.HasOne("FrontToBackMvc.Models.Category", "Category")
@@ -383,6 +447,21 @@ namespace FrontToBackMvc.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("FrontToBackMvc.Models.ProductRating", b =>
+                {
+                    b.HasOne("FrontToBackMvc.Models.Product", "Product")
+                        .WithMany("Ragings")
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("FrontToBackMvc.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -436,6 +515,21 @@ namespace FrontToBackMvc.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductTag", b =>
+                {
+                    b.HasOne("FrontToBackMvc.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FrontToBackMvc.Models.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FrontToBackMvc.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -444,6 +538,8 @@ namespace FrontToBackMvc.Migrations
             modelBuilder.Entity("FrontToBackMvc.Models.Product", b =>
                 {
                     b.Navigation("Images");
+
+                    b.Navigation("Ragings");
                 });
 #pragma warning restore 612, 618
         }

@@ -19,7 +19,7 @@ namespace FrontToBackMvc
             builder.Services.AddIdentity<User, IdentityRole>(opt =>
             {
                 opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
-                opt.Password.RequiredLength = 6;
+                opt.Password.RequiredLength = 3;
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireLowercase = false;
@@ -28,10 +28,16 @@ namespace FrontToBackMvc
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
 
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<UniqloDbContext>();
+            //builder.Services.ConfigureApplicationCookie(x =>
+            //{
+            //    x.AccessDeniedPath = "/Home/AccessDenied";
+            //});
 
             var app = builder.Build();
 
+          
             app.UseUserSeed();
+
             app.MapControllerRoute(
                name: "Register",
                               pattern: "Register",

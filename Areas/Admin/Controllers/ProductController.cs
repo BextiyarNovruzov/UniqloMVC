@@ -11,11 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using FrontToBackMvc.Extentions;
 using FrontToBackMvc.ViewModels.Common;
 using Microsoft.AspNetCore.Authorization;
+using FrontToBackMvc.Helpers;
 
 namespace FrontToBackMvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = RoleConstants.Product)]
     public class ProductController(UniqloDbContext _context, IWebHostEnvironment web) : Controller
     {
         public async Task<IActionResult> Index()

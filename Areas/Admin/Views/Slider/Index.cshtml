@@ -1,66 +1,66 @@
 ﻿@model List<Slider>
-@{
-    ViewData["Title"] = "Index";
-}
+    @{
+        ViewData["Title"] = "Index";
+    }
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <a class="btn btn-primary ml-auto" asp-controller="Slider" asp-action="Create">Create</a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a class="btn btn-primary ml-auto" asp-controller="Slider" asp-action="Create">Create</a>
 
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Subtitle</th>
-                    <th scope="col">Link</th>
-                    <th colspan="4" scope="col">Actions</th>
-                </tr>
-            </thead>
-            @{
-                int counter = 1;
-            }
-            <tbody>
-                @foreach (var item in Model)
-                {
-
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
                     <tr>
-                        <td>@counter</td>
-                        <td><img src="/Images/sliders/@item.ImageUrl" width="50" /></td>
-                        <td>@item.Title</td>
-                        <td>@item.Subtitle</td>
-                        <td>@item.Link</td>
-                        <td>
-                            <a class="btn btn btn-success" asp-action="Update" asp-controller="Slider" asp-route-id="@item.Id">Update</a>
-                        </td>
-                        <td>
-                            <a class="btn btn btn-danger" asp-action="Delete" asp-controller="Slider" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                        @if(!item.IsDeleted)
-                        {
-                            <td>
-                                <a class="btn btn btn-secondary" asp-action="Hide" asp-controller="Slider" asp-route-id="@item.Id">Hide</a>
-                            </td>
-
-                        }
-
-                        else
-                        {
-                            <td>
-                                <a class="btn btn btn-warning" asp-action="Show" asp-controller="Slider" asp-route-id="@item.Id">Show</a>
-                            </td>
-
-
-                        }
-
+                        <th scope="col">Id</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Subtitle</th>
+                        <th scope="col">Link</th>
+                        <th colspan="4" scope="col">Actions</th>
                     </tr>
-                    counter++;
-
+                </thead>
+                @{
+                    int counter = 1;
                 }
-            </tbody>
-        </table>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@counter</td>
+                            <td><img src="/Images/sliders/@item.ImageUrl" width="50" /></td>
+                            <td>@item.Title</td>
+                            <td>@item.Subtitle</td>
+                            <td>@item.Link</td>
+                            <td>
+                                <a class="btn btn btn-success" asp-action="Update" asp-controller="Slider" asp-route-id="@item.Id">Update</a>
+                            </td>
+                            <td>
+                                <a class="btn btn btn-danger" asp-action="Delete" asp-controller="Slider" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                            @if(!item.IsDeleted)
+                            {
+                                <td>
+                                    <a class="btn btn btn-secondary" asp-action="Hide" asp-controller="Slider" asp-route-id="@item.Id">Hide</a>
+                                </td>
+
+                            }
+
+                            else
+                            {
+                                <td>
+                                    <a class="btn btn btn-warning" asp-action="Show" asp-controller="Slider" asp-route-id="@item.Id">Show</a>
+                                </td>
+
+
+                            }
+
+                        </tr>
+                        counter++;
+
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
