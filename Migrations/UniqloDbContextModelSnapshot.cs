@@ -45,6 +45,44 @@ namespace FrontToBackMvc.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("FrontToBackMvc.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("FrontToBackMvc.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -427,6 +465,23 @@ namespace FrontToBackMvc.Migrations
                     b.ToTable("ProductTag");
                 });
 
+            modelBuilder.Entity("FrontToBackMvc.Models.Comment", b =>
+                {
+                    b.HasOne("FrontToBackMvc.Models.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FrontToBackMvc.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("FrontToBackMvc.Models.Product", b =>
                 {
                     b.HasOne("FrontToBackMvc.Models.Category", "Category")
@@ -537,6 +592,8 @@ namespace FrontToBackMvc.Migrations
 
             modelBuilder.Entity("FrontToBackMvc.Models.Product", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Images");
 
                     b.Navigation("Ragings");

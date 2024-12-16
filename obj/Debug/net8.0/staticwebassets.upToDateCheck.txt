@@ -2099,3 +2099,4 @@ wwwroot\Images\products\x43sn3c3.jx1.jpg
 wwwroot\Images\products\xd0ivd22.yve.jpg
 wwwroot\Images\products\y1j31mcn.zcm.jpg
 wwwroot\Images\sliders\l2fl3aub.4tp.webp
+wwwroot\Images\users\DC.jpg

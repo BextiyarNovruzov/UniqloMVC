@@ -1,5 +1,6 @@
 using FrontToBackMvc.DataAccess;
 using FrontToBackMvc.Extentions;
+using FrontToBackMvc.Helpers;
 using FrontToBackMvc.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,25 +29,31 @@ namespace FrontToBackMvc
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
 
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<UniqloDbContext>();
-            //builder.Services.ConfigureApplicationCookie(x =>
-            //{
-            //    x.AccessDeniedPath = "/Home/AccessDenied";
-            //});
+            builder.Services.ConfigureApplicationCookie(x =>
+            {
+                x.AccessDeniedPath = "/Home/AccessDenied";
+
+            });
+
+            SmtpOptions options = new();
+            builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
+            // builder.Services.AddSession();
 
             var app = builder.Build();
 
-          
+
             app.UseUserSeed();
+            // app.UseSession();
 
             app.MapControllerRoute(
                name: "Register",
-                              pattern: "Register",
+               pattern: "Register",
 
-                defaults:new  {controller= "Account" ,action= "Register"});
+                defaults: new { controller = "Account", action = "Register" });
 
             app.MapControllerRoute(
                name: "Login",
-                              pattern: "Login",
+               pattern: "Login",
 
                 defaults: new { controller = "Account", action = "Login" });
 

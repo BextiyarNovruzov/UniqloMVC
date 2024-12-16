@@ -97,24 +97,10 @@
                     <div class="pro__details">
                         <p>@Model.Description </p>
                     </div>
-                    <h3>Comments</h3>
-                    @foreach (var Content in Model.Comments)
-                    {
-                        <p>@Content</p>
 
-                    }
-                    @if (User.Identity.IsAuthenticated)
-                    {
 
-                        <h4>Add Comment</h4>
-                        <form asp-action="Comment" asp-controller="Product" method="get">
-                            <input type="hidden" name="ProductId" value="@Model.Id" />
-                            <textarea name="Text"></textarea>
-                            <button type="submit">Submit</button>
-                        </form>
-                    }
 
-                    <div class="product-action-wrap">
+                    @*  <div class="product-action-wrap">
                         <div class="prodict-statas"><span>Quantity :</span></div>
                         <div class="product-quantity">
                             <form id='myform' method='POST' action='#'>
@@ -139,7 +125,7 @@
                             <li><a href="https://www.facebook.com/devitems/?ref=bookmarks" target="_blank"><i class="zmdi zmdi-facebook"></i></a></li>
                             <li><a href="https://plus.google.com/" target="_blank"><i class="zmdi zmdi-google-plus"></i></a></li>
                         </ul>
-                    </div>
+                    </div> *@
                 </div>
             </div>
         </div>
@@ -206,61 +192,38 @@
                     <div role="tabpanel" id="reviews" class="product__tab__content">
                         <div class="review__address__inner">
                             <!-- Start Single Review -->
-                            <div class="pro__review">
-                                <div class="review__thumb">
-                                    <img src="images/review/1.jpg" alt="review images">
-                                </div>
-                                <div class="review__details">
-                                    <div class="review__info">
-                                        <h4><a href="#">Gerald Barnes</a></h4>
-                                        <ul class="rating">
-                                            <li><i class="zmdi zmdi-star"></i></li>
-                                            <li><i class="zmdi zmdi-star"></i></li>
-                                            <li><i class="zmdi zmdi-star"></i></li>
-                                            <li><i class="zmdi zmdi-star-half"></i></li>
-                                            <li><i class="zmdi zmdi-star-half"></i></li>
-                                        </ul>
-                                        <div class="rating__send">
-                                            <a href="#"><i class="zmdi zmdi-mail-reply"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-close"></i></a>
+                            @foreach (var item in Model.Comments)
+                            {
+                                <div class="pro__review">
+                                    <div class="review__thumb">
+                                        <img width="200" src="~/Images/users/DC.jpg" alt="review images">
+                                    </div>
+                                    <div class="review__details">
+                                        <div class="review__info">
+                                            <h4><a href="#">@item.Author</a></h4>
+                                            <ul class="rating">
+                                                <li><i class="zmdi zmdi-star"></i></li>
+                                                <li><i class="zmdi zmdi-star"></i></li>
+                                                <li><i class="zmdi zmdi-star"></i></li>
+                                                <li><i class="zmdi zmdi-star-half"></i></li>
+                                                <li><i class="zmdi zmdi-star-half"></i></li>
+                                            </ul>
+                                            <div class="rating__send">
+                                                <a href="#"><i class="zmdi zmdi-mail-reply"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-close"></i></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="review__date">
-                                        <span>27 Jun, 2022 at 2:30pm</span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at estei to bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                                </div>
-                            </div>
-                            <!-- End Single Review -->
-                            <!-- Start Single Review -->
-                            <div class="pro__review ans">
-                                <div class="review__thumb">
-                                    <img src="images/review/2.jpg" alt="review images">
-                                </div>
-                                <div class="review__details">
-                                    <div class="review__info">
-                                        <h4><a href="#">Gerald Barnes</a></h4>
-                                        <ul class="rating">
-                                            <li><i class="zmdi zmdi-star"></i></li>
-                                            <li><i class="zmdi zmdi-star"></i></li>
-                                            <li><i class="zmdi zmdi-star"></i></li>
-                                            <li><i class="zmdi zmdi-star-half"></i></li>
-                                            <li><i class="zmdi zmdi-star-half"></i></li>
-                                        </ul>
-                                        <div class="rating__send">
-                                            <a href="#"><i class="zmdi zmdi-mail-reply"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-close"></i></a>
+                                        <div class="review__date">
+                                            <span>@item.CreatedTime</span>
                                         </div>
+                                        <p>@item.Content</p>
                                     </div>
-                                    <div class="review__date">
-                                        <span>27 Jun, 2022 at 2:30pm</span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at estei to bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
                                 </div>
-                            </div>
+                            }
                             <!-- End Single Review -->
+
                         </div>
-                        <!-- Start RAting Area -->
+                        <!-- Start Rating Area -->
                         <div class="rating__wrap">
                             <h2 class="rating-title">Write  A review</h2>
                             <h4 class="rating-title-2">Your Rating</h4>
@@ -302,25 +265,50 @@
                                 <!-- End Single List -->
                             </div>
                         </div>
+
+
                         <!-- End RAting Area -->
-                        <div class="review__box">
-                            <form id="review-form">
-                                <div class="single-review-form">
-                                    <div class="review-box name">
-                                        <input type="text" placeholder="Type your name">
-                                        <input type="email" placeholder="Type your email">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="review__box">
+
+                                <form method="post" class="user" id="review-form">
+                                   @*  <div class="single-review-form">
+
+                                        <div class="form-group">
+                                            <label asp-for="Author"></label>
+                                            <input asp-for="Author" placeholder="Type your name" class="form-control form-control-user">
+                                            <span class="text-danger" asp-validation-for="Author"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="UserEmail"></label>
+                                            <input asp-for="UserEmail" placeholder="Type your email" class="form-control form-control-user">
+                                            <span class="text-danger" asp-validation-for="UserEmail"></span>
+                                        </div>
+
+                                    </div> *@
+
+                                    <input name="productId" value="@Model.Id" type="hidden" />
+
+                                    <div class="single-review-form">
+                                        <div class="review-box message">
+                                            <textarea name="Content" required placeholder="Write your comment here..." rows="4" cols="50"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="single-review-form">
-                                    <div class="review-box message">
-                                        <textarea placeholder="Write your review"></textarea>
-                                    </div>
-                                </div>
-                                <div class="review-btn">
-                                    <a class="fv-btn" href="#">submit review</a>
-                                </div>
-                            </form>
-                        </div>
+
+                                        <button class="btn btn-primary" type="submit" asp-action="AddComment" asp-route-id="@Model.Id" asp-controller="Product">Submit</button>
+                                </form>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <a class="small" asp-controller="Account" asp-action="Login">Login ol qaqaaaaa!</a>
+                            </div>
+                        }
+
+
                     </div>
                     <!-- End Single Content -->
                 </div>

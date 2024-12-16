@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FrontToBackMvc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69beaea9b1c0a926ca76d9a85da0938d45e42324")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45b03e7cad27d363f2d34528e954ef2e374db035")]
 [assembly: System.Reflection.AssemblyProductAttribute("FrontToBackMvc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FrontToBackMvc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

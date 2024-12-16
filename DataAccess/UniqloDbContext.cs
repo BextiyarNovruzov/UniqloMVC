@@ -12,8 +12,6 @@ namespace FrontToBackMvc.DataAccess
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ProductRating> ProductRatings { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
-
         public DbSet<ProductImage> ProductImages { get; set; }
         public UniqloDbContext(DbContextOptions opt) : base(opt) { }
     }

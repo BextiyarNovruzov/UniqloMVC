@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Operations;
 using Microsoft.EntityFrameworkCore;
-using FrontToBackMvc.Extentions;
 using FrontToBackMvc.ViewModels.Common;
 using Microsoft.AspNetCore.Authorization;
 using FrontToBackMvc.Helpers;
